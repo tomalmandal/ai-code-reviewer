@@ -39,35 +39,62 @@ export function ReviewPanel({
 
   if (streaming && !result) {
     return (
-      <div style={{ padding: "1rem" }}>
+      <div style={{ padding: "1.5rem" }}>
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 8,
-            marginBottom: 12,
+            gap: 10,
+            marginBottom: 16,
             color: "#a78bfa",
           }}
         >
-          <span>⚙</span>
-          <span style={{ fontWeight: "bold" }}>Analyzing your code...</span>
+          <span style={{ fontSize: 18 }}>⚙</span>
+          <span style={{ fontWeight: "bold", fontSize: 15 }}>
+            Analyzing your code...
+          </span>
         </div>
-        <pre
-          style={{
-            fontFamily: "monospace",
-            fontSize: 11,
-            color: "#4b5563",
-            whiteSpace: "pre-wrap",
-            wordBreak: "break-all",
-            background: "#1f2937",
-            padding: 12,
-            borderRadius: 6,
-            maxHeight: 300,
-            overflowY: "auto",
-          }}
-        >
-          {rawStream || "Waiting for response..."}
-        </pre>
+
+        {/* Progress dots */}
+        <div style={{ display: "flex", gap: 6, marginBottom: 16 }}>
+          {["Connecting", "Reading code", "Generating review"].map(
+            (label, i) => (
+              <div
+                key={i}
+                style={{
+                  padding: "4px 10px",
+                  background:
+                    rawStream.length > i * 100 ? "#4f46e5" : "#1f2937",
+                  borderRadius: 20,
+                  fontSize: 11,
+                  color: rawStream.length > i * 100 ? "#fff" : "#6b7280",
+                  transition: "all 0.3s",
+                }}
+              >
+                {label}
+              </div>
+            ),
+          )}
+        </div>
+
+        {rawStream && (
+          <pre
+            style={{
+              fontFamily: "monospace",
+              fontSize: 11,
+              color: "#4b5563",
+              whiteSpace: "pre-wrap",
+              wordBreak: "break-all",
+              background: "#1f2937",
+              padding: 12,
+              borderRadius: 6,
+              maxHeight: 200,
+              overflowY: "auto",
+            }}
+          >
+            {rawStream}
+          </pre>
+        )}
       </div>
     );
   }
