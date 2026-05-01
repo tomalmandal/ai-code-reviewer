@@ -1,6 +1,6 @@
 # AI Code Reviewer
 
-> Paste code. Get a full review with bug detection, performance analysis, security audit, quality score, and an AI-suggested rewrite — with a live diff view.
+> Paste code. Get a full review with bug detection, performance analysis, security audit, quality score, and an AI-suggested rewrite - with a live diff view.
 
 ## Live Demo
 
